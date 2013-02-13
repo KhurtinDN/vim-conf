@@ -19,15 +19,25 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-scripts/peaksea'
 Bundle 'altercation/vim-colors-solarized'
 
-" NERD Tree
+" File manager
 Bundle 'scrooloose/nerdtree'
 
 " Git integration
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Syntax commenter
+" Bundle 'vim-scripts/tComment'
+Bundle 'scrooloose/nerdcommenter'
+
+" Python 
+Bundle 'vim-scripts/indentpython.vim'
+Bundle 'vim-scripts/Pydiction'
+Bundle 'vim-scripts/pep8'
+Bundle 'vim-scripts/pylint.vim'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'scrooloose/syntastic'
+
 
 filetype plugin indent on " Automatically detect file types
 
@@ -36,10 +46,21 @@ filetype plugin indent on " Automatically detect file types
 "######  Vim user interface  #############################
 "#########################################################
 
+syntax on
 set scrolloff=5 " Set number of lines to the cursor - when moving vertially using j/k
 
-syntax on
-colorscheme peaksea
+if has("gui")
+    set background=dark
+    colorscheme solarized
+
+    set guifont=Monaco\ 10
+    set guioptions-=T " Hide toolbar from gui
+
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+else
+    set t_Co=256
+    colorscheme peaksea
+endif
 
 
 "#########################################################
@@ -64,7 +85,7 @@ set smartindent
 "######  Changes: history, undo  #########################
 "#########################################################
 
-set history=100
+set history=1000
 set undodir=~/.vim/undodir/
 set undofile
 set undolevels=1000
@@ -72,21 +93,58 @@ set undoreload=10000
 
 
 "#########################################################
-"######  Complete pairs  #################################
+"######  Key bindings  ###################################
 "#########################################################
 
+" Copy paste
+set pastetoggle=<F4>
+
+" Pair
 imap [ []<LEFT>
 imap ( ()<LEFT>
 imap { {}<LEFT>
 
 
 "#########################################################
+"######  NERD Tree configuration  ########################
+"#########################################################
+
+let NERDTreeIgnore=['\.pyc']
+
+nmap <F3> :NERDTreeToggle<CR>
+
+
+"#########################################################
+"######  Syntastic configuration  ########################
+"#########################################################
+
+let g:syntastic_check_on_open=1
+let g:syntastic_echo_current_error=1
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol='e>'
+let g:syntastic_warning_symbol='w>'
+let g:syntastic_style_error_symbol='se'
+let g:syntastic_style_warning_symbol='sw'
+let g:syntastic_enable_highlighting=1
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=5
+
+
+"#########################################################
 "######  Python configuration  ###########################
 "#########################################################
 
+let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
+let g:pyflakes_use_quickfix = 0
+let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
+
 " Highlighting
 let python_highlight_all = 1
+let python_highlight_space_errors = 1
+
 autocmd FileType python syntax keyword pythonDecorator True None False self
+
 autocmd BufNewFile,BufRead *.jinja set syntax=htmljinja
 
 " Auto completing
@@ -98,12 +156,7 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,
 " Trim line ends before saving
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e
 
-if has("gui")
-    set background=dark
-    colorscheme solarized
-
-    set guifont=Monaco\ 10
-    set guioptions-=T " Hide toolbar from gui
-else
-    set t_Co=256
-endif
+" Run python on this program when pressing F9 
+nmap <silent> <F9> :w<CR>:!python %:p<CR>
+vmap <silent> <F9> <esc>:w<CR>:!python %:p<CR>
+imap <silent> <F9> <esc>:w<CR>:!python %:p<CR>

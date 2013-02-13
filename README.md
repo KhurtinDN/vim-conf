@@ -25,6 +25,7 @@ I use [Vundle] as Vim plugin manager.
 
     Launch `vim`, run `:BundleInstall`
 
+4. Check system requirements
 
 ## Updating
 
@@ -39,6 +40,15 @@ I use [Vundle] as Vim plugin manager.
 
     Launch `vim`, run `:BundleInstall` and `:BundleClean`
 
+3. Check system requrirements
+
+## System requirements
+
+1. Python checkers
+
+    ```
+    sudo pip install ropevim flake8 pep8 pyflakes pylint
+    ```
 
 [vim-conf]:http://github.com/KhurtinDN/vim-conf
 [Vundle]:http://github.com/gmarik/vundle
