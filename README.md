@@ -47,8 +47,15 @@ I use [Vundle] as Vim plugin manager.
 1. Python checkers
 
     ```
-    sudo pip install ropevim flake8 pep8 pyflakes pylint
+    sudo pip install flake8 pep8 pyflakes pylint
     ```
+
+1. Python refactoring tools
+
+    ```
+    sudo pip install rope ropemode ropevim
+    ```
+
 
 [vim-conf]:http://github.com/KhurtinDN/vim-conf
 [Vundle]:http://github.com/gmarik/vundle

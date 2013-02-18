@@ -32,11 +32,13 @@ Bundle 'scrooloose/nerdcommenter'
 
 " Python 
 Bundle 'vim-scripts/indentpython.vim'
-Bundle 'vim-scripts/Pydiction'
-Bundle 'vim-scripts/pep8'
-Bundle 'vim-scripts/pylint.vim'
-Bundle 'kevinw/pyflakes-vim'
+" Bundle 'vim-scripts/Pydiction'
+" Bundle 'vim-scripts/pep8'
+" Bundle 'vim-scripts/pylint.vim'
+" Bundle 'kevinw/pyflakes-vim'
 Bundle 'scrooloose/syntastic'
+
+Bundle 'sontek/rope-vim'
 
 
 filetype plugin indent on " Automatically detect file types
@@ -138,6 +140,8 @@ let g:syntastic_loc_list_height=5
 let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 let g:pyflakes_use_quickfix = 0
 let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
+
+let ropevim_vim_completion=1
 
 " Highlighting
 let python_highlight_all = 1
