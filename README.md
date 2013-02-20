@@ -9,9 +9,7 @@ I use [Vundle] as Vim plugin manager.
 1. Clone [vim-conf] repository
 
    ```
-   mkdir ~/.vim-conf
-   cd ~/.vim-conf
-   git clone git://github.com/KhurtinDN/vim-conf.git
+   git clone git://github.com/KhurtinDN/vim-conf.git ~/.vim-conf
    ln -s ~/.vim-conf/.vimrc ~/.vimrc
    mkdir -p ~/.vim/bundle
    ```
@@ -50,7 +48,7 @@ I use [Vundle] as Vim plugin manager.
     sudo pip install flake8 pep8 pyflakes pylint
     ```
 
-1. Python refactoring tools
+2. Python refactoring tools
 
     ```
     sudo pip install rope ropemode ropevim
